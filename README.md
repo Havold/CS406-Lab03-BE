@@ -38,6 +38,7 @@ pip install -r requirements.txt
    - Download dataset and create an __images__ folder in the root directory and put the dataset in the images folder just created (remember to unzip).
    - The structure will be like this: __CS406-Lab02-BE-Raw/images/seg__, __CS406-Lab02-BE-Raw/images/seg_test__ (__seg_test__ doesn't need to be put in because we only query in the seg folder).
    - Link dataset: https://drive.google.com/file/d/1F6sPtl0H-Sh7XPrAojDKcz_rBoUl_fgu/view?usp=sharing
+![directory](./directory.jpg)
 4. Run the Flask server:
 ```
 python app.py
@@ -88,6 +89,7 @@ pip install -r requirements.txt
    - Tải xuống dataset và tạo một thư mục __images__ trong thư mục gốc và đặt dataset vừa tải về vào thư mục __images__ vừa tạo (nhớ giải nén).
    - Cấu trúc thư mục sẽ như sau: __CS406-Lab02-BE-Raw/images/seg__, __CS406-Lab02-BE-Raw/images/seg_test__ (__seg_test__ có thể cần phải đưa vào vì chúng ta sẽ chỉ truy vấn trong thư mục seg).
    - Link dataset: https://drive.google.com/file/d/1F6sPtl0H-Sh7XPrAojDKcz_rBoUl_fgu/view?usp=sharing
+![directory](./directory.jpg)
 4. Chạy Flask server:
 ```
 python app.py
