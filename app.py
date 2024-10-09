@@ -126,7 +126,7 @@ def detect_edge_image():
         edge_image_filepath = os.path.join(app.config['EDGE_FOLDER'], edge_image_filename)
         cv2.imwrite(edge_image_filepath, edge_image)
         edge_image_url = f'/image/edge/{edge_image_filename}'
-        edge_image_urls['edge_image'] = edge_image_url
+        edge_image_urls['canny_edge_image'] = edge_image_url
     
     return jsonify(edge_image_urls), 200
         
