@@ -26,10 +26,10 @@ if not os.path.exists(SHARPENED_FOLDER):
 
 
 # Hàm làm sắc nét ảnh
-def sharpening(filepath):
+def sharpening(filepath, sharpen_level=5):
     image = cv2.imread(filepath)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+    kernel = np.array([[-1,-1,-1], [-1,4+sharpen_level,-1], [-1,-1,-1]])
     sharpened_image = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
     return sharpened_image
 
@@ -100,16 +100,23 @@ def detect_edge_image():
     image = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
 
     method = request.args.get('method').lower()
-    
+    low_threshold = int(request.args.get('low'))
+    high_threshold = int(request.args.get('high'))
+    edge_image = {}
+
     if method=='sobel':  
         # Sobel Edge
         edge_image = sobel_edge_detect(image)
     elif method=='prewitt':
         # Prewitt Edge
         edge_image = prewitt_edge_detect(image)
-    else:
+    elif method=='canny':
         # Canny Edge
-        edge_image = cv2.Canny(image=image, threshold1=100, threshold2=200)
+        edge_image = cv2.Canny(image=image, threshold1=low_threshold, threshold2=high_threshold)
+    else:
+        edge_image['sobel_edge'] = sobel_edge_detect(image)['grad']
+        edge_image['prewitt_edge'] = prewitt_edge_detect(image)['grad']
+        edge_image['canny_edge'] = cv2.Canny(image=image, threshold1=100, threshold2=200)
 
     edge_image_urls = {}
 
@@ -261,8 +268,10 @@ def sharpening_image():
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(filepath)
 
+    sharpen_level = int(request.args.get('level'))
+
     # Làm sắc nét ảnh
-    sharpened_image = sharpening(filepath)
+    sharpened_image = sharpening(filepath, sharpen_level)
     
     # Lưu ảnh đã làm sắc nét
     sharpened_filename = f'sharpened_{filename}'
