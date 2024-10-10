@@ -29,7 +29,8 @@ pip install -r requirements.txt
 git clone https://github.com/Havold/CS406-Lab03-BE.git
 cd CS406-Lab03-BE
 ```
-2. Create necessary directories
+2. Create necessary directories:
+
 Make sure the following directories exist for image uploads and processing:
 - `./images/uploads/`
 - `./images/sharpened/`
