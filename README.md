@@ -81,7 +81,7 @@ python app.py
    - **Response**: Returns the processed image.
 
 ## 🔥 Usage
-Once the server is running, you can test the application by sending requests via a tool like Postman or via a frontend application to interact with the API.
+Once the server is running, you can test the application by sending requests via a tool like `Postman` or via a frontend application to interact with the API.
 
 ---------------------------------------------------------
 # 📷 API xử lý, cải thiện hình ảnh.
@@ -166,4 +166,4 @@ python app.py
    - **Response**: Trả về ảnh đã xử lý
 
 ## 🔥 Sử dụng
-Khi server đã chạy, bạn có thể kiểm tra ứng dụng bằng cách gửi các yêu cầu qua các công cụ như Postman hoặc thông qua một ứng dụng frontend để tương tác với API.
+Khi server đã chạy, bạn có thể kiểm tra ứng dụng bằng cách gửi các yêu cầu qua các công cụ như `Postman` hoặc thông qua một ứng dụng frontend để tương tác với API.
