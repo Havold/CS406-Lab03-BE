@@ -1,12 +1,11 @@
-# :sunglasses: Image Histogram Comparison API 
+# 🌟 Image Enhancing API 
 
-This Flask-based API allows users to upload an image and compare its histogram with a database of stored images to find the most similar images. The API supports both equalized and non-equalized histograms.
+This is a Flask-based application for image processing that provides functionalities like sharpening, noise addition and removal, and edge detection using Sobel, Prewitt, and Canny methods. It also allows users to upload images, apply transformations, and download the processed images.
 
 ## 🌟 Features
-- Upload an image and calculate its histogram.
-- Compare the uploaded image's histogram with stored images.
-- Retrieve the top N most similar images based on Euclidean distance.
-- Option to use equalized histograms for better comparison.
+- **Sharpening**: Adjust the sharpening level of an uploaded image.
+- **Noise Addition & Removal**: Add noise (Sparkle, Salt & Pepper, Gaussian) to an image and then apply denoising filters (Mean, Median).
+- **Edge Detection**: Detect edges using Sobel, Prewitt, or Canny methods.
 
 ## 🛠️ Requirements
 
@@ -27,27 +26,64 @@ pip install -r requirements.txt
 ## 🚀 Getting Started
 1. Clone the repository:
 ```
-git clone https://github.com/Havold/CS406-Lab02-BE-Raw.git
-cd CS406-Lab02-BE-Raw
+git clone https://github.com/Havold/CS406-Lab03-BE.git
+cd CS406-Lab03-BE
 ```
-2. Install dependencies:
+2. Create necessary directories:
+Make sure the following directories exist for image uploads and processing:
+- ./images/uploads/
+- ./images/sharpened/
+- ./images/noise/
+- ./images/denoise/
+- ./images/edge/
+3. Install dependencies:
+Install the required Python packages using:
 ```
 pip install -r requirements.txt
 ```
-3. Set up the directory structure:
-   - Download dataset and create an __images__ folder in the root directory and put the dataset in the images folder just created (remember to unzip).
-   - The structure will be like this: __CS406-Lab02-BE-Raw/images/seg__, __CS406-Lab02-BE-Raw/images/seg_test__ (__seg_test__ doesn't need to be put in because we only query in the seg folder).
-   - Link dataset: https://drive.google.com/file/d/1F6sPtl0H-Sh7XPrAojDKcz_rBoUl_fgu/view?usp=sharing
-![directory](./directory.jpg)
 4. Run the Flask server:
 ```
 python app.py
 ```
 5. The server will start at http://localhost:5000.
 
-## ⚠️ Important Notice
-- The two files __histograms_equalized.json__ and __histograms.json__ are generated from the __create-json-file.ipynb__.
-- You can download and run __create-json-file.ipynb__ here: https://drive.google.com/file/d/15uB2WsK3YFxfee1_cC2OmF5BN7rF4-iM/view?usp=sharing
+## ❗ API Endpoints
+1. Sharpen Image
+   - **URL**: `/sharpening`
+   - **Method**: `POST`
+   - **Parameters**:
+      - `level`: Sharpening intensity (integer).
+   - **File**: Image file (JPEG/PNG).
+   - **Response**: Returns the URL of the sharpened image.
+2. Edge Detection
+   - **URL**: `/edge-detectors`
+   - **Method**: `POST`
+   - **Parameters**:
+      - `method`: `sobel`, `prewitt`, or `canny`.
+      - `low`: Lower threshold (for Canny).
+      - `high`: Upper threshold (for Canny).
+   - **File**: Image file (JPEG/PNG).
+   - **Response**: Returns URLs of the edge-detected images.
+3. Noise Addition and Denoising
+   - **URL**: `/denoising`
+   - **Method**: `POST`
+   - **Parameters**:
+      - `type`: `sparkle-noise`, `salt-pepper-noise`, or `gaussian-noise`.
+      - `low`: Lower threshold (for Canny).
+      - `high`: Upper threshold (for Canny).
+   - **File**: Image file (JPEG/PNG).
+   - **Response**: Returns URLs of the noisy and denoised images.
+4. Get Processed Image
+   - **URL**: `/image/<category>/<filename>`
+   - **Method**: `GET`
+   - **Parameters**:
+      - `category`: `uploads`, `sharpened`, `noise`, `denoise`, or `edge`.
+      - `filename`: Name of the image file.
+   - **Response**: Returns the processed image.
+
+## 🔥 Usage
+Once the server is running, you can test the application by sending requests via a tool like Postman or via a frontend application to interact with the API.
+
 ---------------------------------------------------------
 # :sunglasses: API Tính khoảng cách và tìm các ảnh tương đồng thông qua histogram
 
