@@ -57,15 +57,15 @@ def detect_edge_image():
 
     def sobel_edge_detect(image, ksize=3):
         ddepth = cv2.CV_16S
-        gray_x = cv2.Sobel(src=image, ddepth=ddepth, dx=1, dy=0, ksize=ksize)
-        gray_y = cv2.Sobel(src=image, ddepth=ddepth, dx=0, dy=1, ksize=ksize)
+        grad_x = cv2.Sobel(src=image, ddepth=ddepth, dx=1, dy=0, ksize=ksize)
+        grad_y = cv2.Sobel(src=image, ddepth=ddepth, dx=0, dy=1, ksize=ksize)
         
-        abs_gray_x = cv2.convertScaleAbs(gray_x)
-        abs_gray_y = cv2.convertScaleAbs(gray_y)
-        grad = cv2.addWeighted(abs_gray_x, 0.5, abs_gray_y, 0.5, 0)
+        abs_grad_x = cv2.convertScaleAbs(grad_x)
+        abs_grad_y = cv2.convertScaleAbs(grad_y)
+        grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
         return {
-            'gray_x': gray_x,
-            'gray_y': gray_y,
+            'grad_x': grad_x,
+            'grad_y': grad_y,
             'grad': grad
         }
     
